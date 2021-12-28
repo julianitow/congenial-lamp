@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Login Files Server Alesia</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="status">
+                Invalid username or password;
+            </div>
+            <div class="login">
+                <div class="input">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username">
+                </div>
+                <div class="password">
+                    <label for="password">Password: </label>
+                    <input type="password" id ="password">
+                </div>
+                <div>
+                    <button id="loginBtn" class="button success">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const loginModal = document.getElementById('loginModal');
+        loginModal.style.display = "block";
+        const loginBtn = document.getElementById('loginBtn');
+        console.log(loginModal)
+        loginBtn.addEventListener('click', () => {
+            const passwordEntered = document.getElementById('password').value;
+            const usernameEntered = document.getElementById('username').value;
+            console.log(usernameEntered, passwordEntered)
+            if(passwordEntered.length === 0 || usernameEntered.length === 0) {
+                document.getElementsByClassName('status')[0].style.display = '';
+                return;
+            }
+
+            const href = `${window.location.href}?name=${usernameEntered}&password=${passwordEntered}`;
+            window.location.href = href;
+        });
+
+        const inputs = document.getElementsByTagName('input');
+        for(let i in inputs) {
+        const input = inputs[i];
+        if (typeof input === 'object') {
+            input.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Enter') {
+                    loginBtn.click();
+                }
+            });
+        }
+    }
+
+    </script>
+</body>
+</html>

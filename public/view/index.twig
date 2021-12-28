@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Files Server Alesia</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+    <h1>Alesia server</h1>
+    <div id="playerModal" class="modal">
+        <div class="modal-content player">
+        <span class="close">&times;</span>
+            <div class="mediaPlayer">
+            </div>
+        </div>
+    </div>
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th>File</th>
+          <th>Size</th>
+          <th>Type</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for file in files %}
+        <tr>
+          <td id="{{file}}"> {{ file }}</td>
+          <td>{{ sizes[loop.index0] }}Mo</td>
+          <td>{{ types[loop.index0] }}</td>
+          <td>
+            <button class="button download" id="{{ file }}">Download</button>
+          {% if medias[loop.index0] == true %}
+            <button class="button play" value="{{ types[loop.index0] }}" id="play_{{ file }}">Play</button>
+          {% endif %}
+          </td>
+          <!--<td><button class="button delete" id="{{ file }}">Supprimer</button></td>-->
+        </tr>
+    {% endfor %}
+      </tbody>
+    </table>
+    <script src="../js/index.js"></script>
+</body>
+</html>
